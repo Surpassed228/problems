@@ -29,8 +29,3 @@ class Solution:
         				break
         return max(all_palinds,key = lambda x: len(x))
 
-sol = Solution()
-for_testing = ['aababakdjf','a','ab','abb','colosojoso','perepoffjs','sssssssssskokokok','sjjjsox','aporopavengenceecnegnev']
-for one_item in for_testing:
-    print(one_item)
-    print(f'longest palindrome: {sol.longestPalindrome(one_item)}',end = '\n\n')
