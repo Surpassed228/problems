@@ -1,43 +1,39 @@
 n,k = tuple(map(int,input().strip().split(' ')))
 num_list = list(map(int,input().strip().split(' ')))
 
-def count_days(some_list,N = n):
-	if N == 0:
-		return 0
-	elif N == 1:
-		return 1
-
-	Max = max(some_list)
-	Min = min(some_list)
-
-	if Max-Min <= k:
-		return N
-	else:
-		day_count = 0
-		elements = [some_list[0]]
-		R = 1
-		while R < N:
-			if some_list[R] - elements[-1] > k:
-				popped_el = some_list.pop(R)
-				elements.append(popped_el)
-				N -= 1
-			else:
-				R += 1
-
-		del some_list[0]
-		N -= 1
-
-		day_count += 1 + count_days(some_list,N = N)
-		return day_count
 
 num_list.sort()
+def count_days(the_list,N = n):
+	if N == 1:
+		return 1
+	elif N == 0:
+		return 0
+	elif the_list[-1] - the_list[0] <= k:
+		return N
+	else:
+		the_mins = [the_list[0]]
+		N -= 1
+
+		ind = 1
+		another_list = []
+		while ind < N:
+			if the_list[ind]-the_mins[-1] > k:
+				the_mins.append(the_list[ind])
+				N -= 1
+			else:
+				another_list.append(the_list[ind])
+				ind += 1
+		return 1 + count_days(another_list,N = N)
+
+
+
 print(count_days(num_list,N = n))
 
-#k = 1
-#[1,2]
-#els = [1]
-#R = 1
-#N = 2
-
+#k = 0
+#N = 1
+#ind = 0
+#[2]
+#mins_list = [1,2]
+#mins_count = 2
 
 
