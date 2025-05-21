@@ -11,24 +11,23 @@ def count_days(the_list,N = n):
 	elif the_list[-1] - the_list[0] <= k:
 		return N
 	else:
-		the_mins = [the_list[0]]
-		N -= 1
-
-		ind = 1
+		the_min = the_list[0]
 		another_list = []
-		while ind < N:
-			if the_list[ind]-the_mins[-1] > k:
-				the_mins.append(the_list[ind])
+		for ind in range(1,N):
+			if the_list[ind]-the_min > k:
+				the_min = the_list[ind]
 				N -= 1
 			else:
 				another_list.append(the_list[ind])
-				ind += 1
+		N -= 1		
 		return 1 + count_days(another_list,N = N)
 
 
 
 print(count_days(num_list,N = n))
 
+
+#[1,2,3,4,5,6,7,8,9]
 #k = 0
 #N = 1
 #ind = 0
